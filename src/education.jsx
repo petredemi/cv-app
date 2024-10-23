@@ -37,6 +37,11 @@ function Label({title, type, name, value, setValue}){
         </>            
     )
 }
+function Button({classname, text, handleClick}){
+    return(
+        <button className= {classname} onClick={handleClick}>{text}</button>
+    )
+}
 
 //console.log(Edu())
     function Edu(){
@@ -201,8 +206,8 @@ function Label({title, type, name, value, setValue}){
             {personal.map((persona) => <Info key = {persona.id} inf = {persona.inf} index = {field[persona.index]}/>)}
             <FromTo  startmonth={startmonth} endmonth={endmonth} startyear={startyear} endyear={endyear}/>
             <div className= 'btn'>
-                <button itemID='edit' onClick={Edit} >Edit</button>
-                <button itemID='del'onClick={Del}>Delete</button>
+            <button itemID='edit' onClick={Edit} >Edit</button>
+            <button itemID='del'onClick={Del}>Delete</button>
             </div>
         </div>
     </div>
@@ -211,13 +216,17 @@ function Label({title, type, name, value, setValue}){
     )
 }
 function Education(){
-      const [add, setAdd] = useState(0);
-  //    const cards = [<li key={add}><Edu/></li>]
+    const [add, setAdd] = useState(0);
     const [cards, setCards] = useState([<li key = {add}><Edu/></li>])
         console.log(add)
         console.log(cards)
-
-    const addd = () =>{
+    const addEducation = () =>{
+        setAdd(add + 1)
+        cards[add] = <li key={add}><Edu/></li>
+        setCards(cards)
+        console.log(add) 
+    }
+    const delEducation = () =>{
         setAdd(add + 1)
         cards[add] = <li key={add}><Edu/></li>
         setCards(cards)
@@ -228,7 +237,7 @@ function Education(){
             <>
                 <div className={styles.education}>
                         <h3>Education</h3>
-                        <button itemID='add' onClick={addd}>add</button>
+                        <button itemID='add' onClick={addEducation}>add</button>
                 </div>
                 <div className='eu'>
                     {cards}
@@ -237,6 +246,15 @@ function Education(){
         ) 
 }
 function Quote() {
-    return <h5>&quot;I swear by my pretty floral bonnet, I will end you.&quot;</h5>;
+    return (
+    <>
+    <h5>&quot;I swear by my pretty floral bonnet, I will end you.&quot;</h5>
+    <div>
+        <Button text = 'del'/>
+    </div>
+
+    </>
+    )
+
   }
  export {Education, Quote, Info, FromTo, Label} ;

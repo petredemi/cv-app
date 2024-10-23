@@ -41,7 +41,7 @@ function Description({text}){
         <div className={styles.desc} placeholder= 'describe job'>{text}</div>
     )
 }
-function Edu(props){
+function Exp(props){
     const [jobtitle, setJobtitle] = useState('');
     const [company, setCompany] = useState('')
     const [city, setCity] = useState('')
@@ -223,38 +223,26 @@ return(
 )
 }
 function Experience(){
-    const [add, setAdd] = useState(false)
-    let ii = 0;
-    const yyy = [<li key={ii}>{<Edu/>}</li>]
-  console.log(add)
-const addd = (event) =>{
-
-    event.preventDefault()
-    if(!add){
-    ii = ii + 1;
-    yyy.push(<li key={ii}><Edu key={ii}/></li>)
-    setAdd(false)
-    console.log(yyy)
-    console.log(add)
-
+    const [add, setAdd] = useState(0);
+    const [cards, setCards] = useState([<li key = {add}><Exp/></li>])
+        console.log(add)
+        console.log(cards)
+    const addExperience = () =>{
+        setAdd(add + 1)
+        cards[add] = <li key={add}><Exp/></li>
+        setCards(cards)
+        console.log(add) 
     }
-}
-function Expcards(){
-if(add == add){
-    return(
-        <>
-        {yyy}
-        </>
-    )
-}
-}
+
 return (
         <>
             <div className={styles.experience}>
                     <h3>Experience</h3>
-                    <button itemID='add' onClick={addd}>add</button>
+                    <button itemID='add' onClick={addExperience}>add</button>
             </div>
-            <Expcards/>
+            <div className='exp'>
+                {cards}
+            </div>
         </>
     ) 
 }
