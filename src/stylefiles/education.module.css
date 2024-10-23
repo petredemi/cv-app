@@ -1,0 +1,17 @@
+.in{
+    font-size: 1.1rem;
+    display: flex;
+    width: fit-content;
+    color: red;
+}
+input{
+    max-width: 250px;
+}
+.education{
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.bac{
+    background-color: blanchedalmond;
+}
