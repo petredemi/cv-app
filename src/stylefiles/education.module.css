@@ -2,10 +2,11 @@
     font-size: 1.1rem;
     display: flex;
     width: fit-content;
-    color: red;
+    color: rgb(33, 69, 160);
 }
 input{
-    max-width: 250px;
+    max-width: 320px;
+    margin-left: 40px;
 }
 .education{
     display: flex;
@@ -14,4 +15,7 @@ input{
 }
 .bac{
     background-color: blanchedalmond;
+}
+.month{
+    margin-top: 10px;
 }

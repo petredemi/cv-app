@@ -1,8 +1,6 @@
 import { useState} from 'react';
 import  styles from'./stylefiles/education.module.css';
 
-
-
 function Info({index, inf}){
     return (
         <div className = {styles.in}>
@@ -37,34 +35,25 @@ function Label({title, type, name, value, setValue}){
         </>            
     )
 }
-function Button({classname, text, handleClick}){
+function Button({ color, background, text, handleClick}){
+    const btnStyle ={
+        color: color,
+        backgroundColor: background
+    }
     return(
-        <button className= {classname} onClick={handleClick}>{text}</button>
+        <button style = {btnStyle} onClick={handleClick}>{text}</button>
     )
 }
-
-//console.log(Edu())
-    function Edu(){
-        const [grade, setGrade] = useState('');
+    function Edu({btn}){
+        const [grade, setGrade] = useState('')
         const [study, setStudy] = useState('')
         const [school, setSchool] = useState('')
-        const[startmonth, setStartmonth] = useState('')
+        const [startmonth, setStartmonth] = useState('')
         const [startyear, setStartyear] = useState('')
         const [endmonth, setEndmonth] = useState('')
         const [endyear, setEndyear] = useState('');
         const [edit, setEdit] = useState(false);
-        const [col, setCol] = useState('');
         const [show, setShow] = useState('none');
-        function Del(event){
-            event.preventDefault();
-            if(cards.length > 1){
-                cards.splice(add, 1)
-                setAdd(add - 1);
-                console.log(cards)
-            }
-        }
-        console.log(typeof grade)
-
         const field = ['Grade:',  'Field of study:', 'School:']
         const months = ['Ianuary', 'February', 'March', 'April', 'May', 'Jun', 'July', 'August', 'September', 'October','November', 'December']
         const years = []
@@ -95,13 +84,11 @@ function Button({classname, text, handleClick}){
             event.preventDefault();
                 if(!edit){
                     console.log(edit)
-                    setCol('grey')
                     setShow('flex')
                     setEdit(true);
                     console.log(years)
                 }else{
                     console.log(edit)
-                    setCol('blue')
                     setShow('none')
                     setEdit(false)
                 }
@@ -122,7 +109,7 @@ function Button({classname, text, handleClick}){
                 <form className='form'>
                 {labels.map((label) => <Label key ={label.id} title = {label.title} name = {label.name} type={label.type}
                         value = {label.value} setValue={label.setValue}/>)}
-                  <label className='month'>
+                  <label className = 'month' style={{marginTop: '10px'}}>
                      <h4>start month</h4>
                      <input list="studydates" name="studydates"
                         value = {startmonth}
@@ -196,65 +183,55 @@ function Button({classname, text, handleClick}){
             )
         }     
     return(
-        <>
+    <>
     <div className="addeducation">
-        <div className="basic" style={{display:show, backgroundColor: col}}>
+        <div className="basic" style={{display:show}}>
             {Form()}
-            <button itemID='save' onClick={Save}>Save</button>
+            <Button color = 'darkblue' background= 'lightgreen' text= 'save' handleClick={Save}/>
         </div>
         <div className="info" >
             {personal.map((persona) => <Info key = {persona.id} inf = {persona.inf} index = {field[persona.index]}/>)}
             <FromTo  startmonth={startmonth} endmonth={endmonth} startyear={startyear} endyear={endyear}/>
             <div className= 'btn'>
-            <button itemID='edit' onClick={Edit} >Edit</button>
-            <button itemID='del'onClick={Del}>Delete</button>
+                <Button color= 'darkgreen' background='lightblue' text= 'edit' handleClick={Edit}/>
+                <Button color = 'darkblue' background='lightyellow' text = 'delete' handleClick={btn}/>
             </div>
-        </div>
+        </div>  
     </div>
-
-</>
+    </>
     )
 }
 function Education(){
-    const [add, setAdd] = useState(0);
-    const [cards, setCards] = useState([<li key = {add}><Edu/></li>])
+    const [add, setAdd] = useState('a');
+    const [cards, setCards] = useState([])
+    const mapp = cards.map((card) => {return card})
         console.log(add)
         console.log(cards)
-    const addEducation = () =>{
-        setAdd(add + 1)
-        cards[add] = <li key={add}><Edu/></li>
-        setCards(cards)
-        console.log(add) 
-    }
-    const delEducation = () =>{
-        setAdd(add + 1)
-        cards[add] = <li key={add}><Edu/></li>
-        setCards(cards)
-        console.log(add) 
-    }
+        console.log(mapp)
 
+        const delEdu = () => {
+            setAdd(add)
+            const inx = cards.findIndex(card => card.key == add)
+            cards.splice(inx, 1);
+            setCards(cards)
+            console.log(inx)
+        }
+    const addEducation = () =>{
+        setAdd(add +1)
+        cards.push( <li key={add}><Edu key={add} btn = {delEdu}/></li>)
+        setCards(cards)
+        console.log(add) 
+    }
     return (
             <>
                 <div className={styles.education}>
                         <h3>Education</h3>
-                        <button itemID='add' onClick={addEducation}>add</button>
+                        <Button color = 'blue' background = 'lightgreen' text = 'add' handleClick={addEducation}/>
                 </div>
                 <div className='eu'>
-                    {cards}
+                    {mapp}
                 </div>
             </>
         ) 
 }
-function Quote() {
-    return (
-    <>
-    <h5>&quot;I swear by my pretty floral bonnet, I will end you.&quot;</h5>
-    <div>
-        <Button text = 'del'/>
-    </div>
-
-    </>
-    )
-
-  }
- export {Education, Quote, Info, FromTo, Label} ;
+ export {Education};

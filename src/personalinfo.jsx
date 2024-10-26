@@ -107,7 +107,4 @@ function Personalinfo(){
             </>
     ) 
 }
-function Greeting() {
-    return <h5>&quot;I swear by my pretty floral bonnet, I will end you.&quot;</h5>;
-  }
-  export {Personalinfo, Greeting} ;
+  export {Personalinfo} ;

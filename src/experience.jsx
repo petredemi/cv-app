@@ -1,7 +1,5 @@
 import { useState} from 'react';
 import  styles from'./stylefiles/experience.module.css';
-
-//import {Info, FromTo, Label} from './education'
 function Info({index, inf}){
     return (
         <div className = {styles.in}>
@@ -31,7 +29,6 @@ function Label({title, type, name, value, setValue}){
                 name = {name}
                  value={value}
                  onChange={(event) => {setValue(event.target.value)}}
-                 className={styles.back}
               /> 
         </>            
     )
@@ -41,7 +38,19 @@ function Description({text}){
         <div className={styles.desc} placeholder= 'describe job'>{text}</div>
     )
 }
-function Exp(props){
+function Button({color, background, text, btnClick}){
+    const btnStyle ={
+        color: color,
+        backgroundColor: background
+    }
+    return(
+        <>
+        <button style = {btnStyle} onClick={btnClick}>{text}</button>
+        </>
+    )
+}
+
+function Exp(btn){
     const [jobtitle, setJobtitle] = useState('');
     const [company, setCompany] = useState('')
     const [city, setCity] = useState('')
@@ -50,20 +59,8 @@ function Exp(props){
     const [endmonth, setEndmonth] = useState('')
     const [endyear, setEndyear] = useState('');
     const [edit, setEdit] = useState(false);
-    const [col, setCol] = useState('');
     const [show, setShow] = useState('none');
     const [textarea, setTextarea] = useState( " tell about your experience")
-
-
-    function Del(event){
-        event.preventDefault();
-        if(cards.length > 1){
-            cards.splice(add, 1)
-            setAdd(add - 1);
-            console.log(cards)
-        }
-    }
-    
 
     const field = ['Job title:',  'Company:', 'City, Country:']
     const months = ['Ianuary', 'February', 'March', 'April', 'May', 'Jun', 'July', 'August', 'September', 'October','November', 'December']
@@ -95,13 +92,11 @@ function Exp(props){
         event.preventDefault();
             if(!edit){
                 console.log(edit)
-                setCol('grey')
                 setShow('flex')
                 setEdit(true);
                 console.log(years)
             }else{
                 console.log(edit)
-                setCol('blue')
                 setShow('none')
                 setEdit(false)
             }
@@ -125,7 +120,7 @@ function Exp(props){
             <form className='form'>
             {labels.map((label) => <Label key ={label.id} title = {label.title} name = {label.name} type={label.type}
                     value = {label.value} setValue={label.setValue}/>)}
-              <label className='month'>
+              <label className='month' style={{marginTop:'10px'}}>
                  <h4>start month</h4>
                  <input list="workdates" name="workdates"
                     value = {startmonth}
@@ -202,10 +197,11 @@ function Exp(props){
     }     
 return(
     <>
-<div className="addexperience"  key = {props.k}>
-    <div className="basic" style={{display:show, backgroundColor: col}}>
+<div className="addexperience" >
+    <div className="basic" style={{display:show}}>
         {Form()}
-        <button itemID='save' onClick={Save}>Save</button>
+        <Button color = 'darkblue' background= 'lightgreen' text= 'save' btnClick={Save}/>
+
     </div>
     <div className="info" >
         {personal.map((persona) => <Info key = {persona.id} inf = {persona.inf} index = {field[persona.index]}/>)}
@@ -213,35 +209,45 @@ return(
         <h4>Description</h4>
         <Description text = {textarea}/>
         <div className= 'btn'>
-            <button itemID='edit' onClick={Edit} >Edit</button>
-            <button itemID='del'onClick={Del}>Delete</button>
+            <Button color= 'darkgreen' background='lightblue' text= 'edit' btnClick={Edit}/>
+            <Button color = 'darkblue' background='lightyellow' text = 'delete' btnClick={btn}/>
+
         </div>
     </div>
 </div>
 
 </>
-)
+    )
 }
 function Experience(){
-    const [add, setAdd] = useState(0);
-    const [cards, setCards] = useState([<li key = {add}><Exp/></li>])
-        console.log(add)
-        console.log(cards)
-    const addExperience = () =>{
-        setAdd(add + 1)
-        cards[add] = <li key={add}><Exp/></li>
+    const [add, setAdd] = useState('b');
+    const [cards, setCards] = useState([])
+    const mapp = cards.map((card) => {return card})
+    console.log(add)
+    console.log(cards)
+    console.log(mapp)
+
+    const delExp = (e) => {
+        setAdd(add)
+        let inx = cards.findIndex(card => card.key == add)
+        cards.splice(inx, 1);
+        setCards(cards)
+        console.log(inx)
+    }
+    const addExperience = (e) =>{
+        setAdd(add +1)
+        cards.push(<li key={add}><Exp key={add} btn = {delExp}/><button onClick={delExp} >del</button></li>)
         setCards(cards)
         console.log(add) 
     }
-
 return (
         <>
             <div className={styles.experience}>
                     <h3>Experience</h3>
-                    <button itemID='add' onClick={addExperience}>add</button>
+                    <Button color = 'blue' background = 'lightgreen' text = 'add' btnClick={addExperience}/>
             </div>
-            <div className='exp'>
-                {cards}
+            <div className='eu'>
+                    {mapp}
             </div>
         </>
     ) 
