@@ -39,7 +39,7 @@ function Button({ color, background, preview, text, handleClick}){
         </>
     )
 }
-    function Edu({btn, view, btW}){
+    function Edu({btn}){
         const [grade, setGrade] = useState('')
         const [study, setStudy] = useState('')
         const [school, setSchool] = useState('')
@@ -49,8 +49,6 @@ function Button({ color, background, preview, text, handleClick}){
         const [endyear, setEndyear] = useState('');
         const [edit, setEdit] = useState(false);
         const [show, setShow] = useState('none');
-        const [vi, setVi] = useState(view)
-        console.log(btW)
         const field = ['Grade:',  'Field of study:', 'School:']
         const months = ['Ianuary', 'February', 'March', 'April', 'May', 'Jun', 'July', 'August', 'September', 'October','November', 'December']
         const years = []
@@ -180,7 +178,7 @@ function Button({ color, background, preview, text, handleClick}){
             )
         }     
     return(
-    <>
+    
     <div className="addeducation">
         <div className="basic" style={{display:show}}>
             {Form()}
@@ -190,30 +188,36 @@ function Button({ color, background, preview, text, handleClick}){
             {personal.map((persona) => <Info key = {persona.id} inf = {persona.inf} index = {field[persona.index]}/>)}
             <FromTo  startmonth={startmonth} endmonth={endmonth} startyear={startyear} endyear={endyear}/>
             <div className= 'btn'>
-                <Button color= 'darkgreen' background='lightblue' text= 'edit'  preview= {view} handleClick={Edit}/>
-                <Button color = 'darkblue' background='lightyellow' text = 'delete' preview={view} handleClick={btn}/>
+                <Button color= 'darkgreen' background='lightblue' text= 'edit'  handleClick={Edit}/>
+                <Button color = 'darkblue' background='lightyellow' text = 'delete' handleClick={btn}/>
             </div>
 
         </div>  
     </div>
-    </>
+    
     )
 }
-function Education({view, btW}){
+function Education({view}){
     const [add, setAdd] = useState('a');
     const [cards, setCards] = useState([])
-    console.log(btW)
     const mapp = cards.map((card) => {return card})
-        const delEdu = () => {
-            setAdd(add)
+    
+    const delEdu = () => {
+            setAdd(add )
             const inx = cards.findIndex(card => card.key == add)
+            if(inx < 0){return}
             cards.splice(inx, 1);
             setCards(cards)
+            console.log(add)
+            console.log(inx)
         }
     const addEducation = () =>{
         setAdd(add +1)
-        cards.push( <li key={add}><Edu key={add} view={view} btW={btW} btn = {delEdu}/></li>)
+        cards.push( <li key={add}><Edu btn = {delEdu}/></li>)
         console.log(view)
+        setCards(cards)
+        console.log(add)
+        
     }
     if(add == 'a'){
         addEducation()
@@ -230,4 +234,4 @@ function Education({view, btW}){
             </>
         ) 
 }
- export {Education, Info, FromTo, Label}
+ export {Education, FromTo, Label}

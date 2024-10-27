@@ -37,7 +37,7 @@ function App() {
             <Button color = 'darkblue' background= 'lightgreen' text= 'preview' handleClick={viewMode}/>
           </div>
           <Personalinfo/>
-          <Education view={view} btW={btnview}/>
+          <Education view={view}/>
           <Experience view={view}/>
       </>
   )
