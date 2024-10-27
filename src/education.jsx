@@ -1,14 +1,7 @@
 import { useState} from 'react';
 import  styles from'./stylefiles/education.module.css';
+import { Info } from './personalinfo.jsx';
 
-function Info({index, inf}){
-    return (
-        <div>
-            <div className= 'index'> {index} </div>
-            <div className='inf'>{inf}</div> 
-        </div>
-    )
-}
 function FromTo({startmonth, startyear, endmonth, endyear}){
     return(
         <>
@@ -204,22 +197,20 @@ function Education(){
     const [add, setAdd] = useState('a');
     const [cards, setCards] = useState([])
     const mapp = cards.map((card) => {return card})
-        console.log(add)
-        console.log(cards)
-        console.log(mapp)
 
         const delEdu = () => {
             setAdd(add)
             const inx = cards.findIndex(card => card.key == add)
             cards.splice(inx, 1);
             setCards(cards)
-            console.log(inx)
         }
+    console.log(cards)
     const addEducation = () =>{
         setAdd(add +1)
         cards.push( <li key={add}><Edu key={add} btn = {delEdu}/></li>)
-        setCards(cards)
-        console.log(add) 
+    }
+    if(add == 'a'){
+        addEducation()
     }
     return (
             <>

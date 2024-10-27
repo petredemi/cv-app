@@ -17,12 +17,8 @@ function Personalinfo(){
     const [edit, setEdit] = useState(false);
     const [col, setCol] = useState('');
     const [show, setShow] = useState('none');
-    function Appcard(){
-        return (
-            <div className='app'></div>
-        ) 
-    }
     const field = ['Nume:  ', 'Email:  ', 'Mobile:']
+
     const personal = [ 
         {id: 1, inf: name, index: 0},
         {id: 2, inf: email, index: 1},
@@ -86,12 +82,6 @@ function Personalinfo(){
     
             )
         }
-
-        function ClickAdd (){
-            return (
-                <Info inf ={persona.inf} index = {field [persona.index]}/>)
-            }
-    
     return (
             <>
             <div className="app">
@@ -107,4 +97,4 @@ function Personalinfo(){
             </>
     ) 
 }
-  export {Personalinfo} ;
+  export {Personalinfo, Info} ;

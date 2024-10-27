@@ -189,25 +189,28 @@ return(
     )
 }
 function Experience(){
-    const [addd, setAddd] = useState('b');
+    const [add, setAdd] = useState('b');
     const [cards, setCards] = useState([])
     const mapp = cards.map((card) => {return card})
-    console.log(addd)
+    console.log(add)
     console.log(cards)
     console.log(mapp)
 
     const delExp = (e) => {
-        setAddd(addd)
-        let inx = cards.findIndex(card => card.key == addd)
+        setAdd(add)
+        let inx = cards.findIndex(card => card.key == add)
         cards.splice(inx, 1);
         setCards(cards)
         console.log(inx)
     }
     const addExperience = (e) =>{
-        setAddd(addd +1)
-        cards.push(<li key={addd}><Exp key={addd} btn = {delExp}/></li>)
+        setAdd(add +1)
+        cards.push(<li key={add}><Exp key={add} btn = {delExp}/></li>)
         setCards(cards)
-        console.log(addd) 
+        console.log(add) 
+    }
+    if( add == 'b'){
+        addExperience()
     }
 return (
         <>
