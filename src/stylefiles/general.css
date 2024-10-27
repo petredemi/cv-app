@@ -1,3 +1,9 @@
+
+.resume{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
 .basic{
     box-sizing: content-box;
     background-color:whitesmoke;

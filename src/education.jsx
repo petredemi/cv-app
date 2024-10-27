@@ -27,25 +27,27 @@ function Label({title, type, name, value, setValue}){
         </>            
     )
 }
-function Button({ color, background, text, handleClick}){
+function Button({ color, background, preview, text, handleClick}){
     const btnStyle ={
         color: color,
-        backgroundColor: background
+        backgroundColor: background,
+        display: preview
     }
     return(
-        <button style = {btnStyle} onClick={handleClick}>{text}</button>
+        <button className='btn' style = {btnStyle} onClick={handleClick}>{text}</button>
     )
 }
-    function Edu({btn}){
+    function Edu({btn, view}){
         const [grade, setGrade] = useState('')
         const [study, setStudy] = useState('')
         const [school, setSchool] = useState('')
         const [startmonth, setStartmonth] = useState('')
-        const [startyear, setStartyear] = useState('')
-        const [endmonth, setEndmonth] = useState('')
+        const [startyear, setStartyear] = useState('');
+        const [endmonth, setEndmonth] = useState('');
         const [endyear, setEndyear] = useState('');
         const [edit, setEdit] = useState(false);
         const [show, setShow] = useState('none');
+        console.log(view)
         const field = ['Grade:',  'Field of study:', 'School:']
         const months = ['Ianuary', 'February', 'March', 'April', 'May', 'Jun', 'July', 'August', 'September', 'October','November', 'December']
         const years = []
@@ -179,35 +181,40 @@ function Button({ color, background, text, handleClick}){
     <div className="addeducation">
         <div className="basic" style={{display:show}}>
             {Form()}
-            <Button color = 'darkblue' background= 'lightgreen' text= 'save' handleClick={Save}/>
+            <Button color = 'darkblue' background='lightgreen' text= 'save' handleClick={Save}/>
         </div>
         <div className="info" >
             {personal.map((persona) => <Info key = {persona.id} inf = {persona.inf} index = {field[persona.index]}/>)}
             <FromTo  startmonth={startmonth} endmonth={endmonth} startyear={startyear} endyear={endyear}/>
             <div className= 'btn'>
-                <Button color= 'darkgreen' background='lightblue' text= 'edit' handleClick={Edit}/>
+                <Button color= 'darkgreen' background='lightblue' text= 'edit'  handleClick={Edit}/>
                 <Button color = 'darkblue' background='lightyellow' text = 'delete' handleClick={btn}/>
             </div>
+
         </div>  
     </div>
     </>
     )
 }
-function Education(){
+function Education({view}){
     const [add, setAdd] = useState('a');
     const [cards, setCards] = useState([])
+    const [viewedu, setViewedu] = useState(view)
     const mapp = cards.map((card) => {return card})
-
+    console.log(viewedu)
+    if(!viewedu){
+        setViewedu(view)
+    }
         const delEdu = () => {
             setAdd(add)
             const inx = cards.findIndex(card => card.key == add)
             cards.splice(inx, 1);
             setCards(cards)
         }
-    console.log(cards)
     const addEducation = () =>{
         setAdd(add +1)
-        cards.push( <li key={add}><Edu key={add} btn = {delEdu}/></li>)
+        cards.push( <li key={add}><Edu key={add} view={view} btn = {delEdu}/></li>)
+        console.log(view)
     }
     if(add == 'a'){
         addEducation()
@@ -216,7 +223,7 @@ function Education(){
             <>
                 <div className={styles.education}>
                         <h3>Education</h3>
-                        <Button color = 'blue' background = 'lightgreen' text = 'add' handleClick={addEducation}/>
+                        <Button color = 'blue' background = 'lightgreen' text = 'add' preview={view} handleClick={addEducation}/>
                 </div>
                 <div className='eu'>
                     {mapp}

@@ -2,14 +2,15 @@ import { useState} from 'react';
 import  styles from'./stylefiles/experience.module.css';
 import {Info, FromTo, Label} from './education.jsx'
 
-function Button({color, background, text, btnClick}){
+function Button({color, background, preview, text, btnClick}){
     const btnStyle ={
         color: color,
-        backgroundColor: background
+        backgroundColor: background,
+        display: preview
     }
     return(
         <>
-        <button style = {btnStyle} onClick={btnClick}>{text}</button>
+        <button className='btn' style = {btnStyle} onClick={btnClick}>{text}</button>
         </>
     )
 }
@@ -19,7 +20,7 @@ function Description({text}){
     )
 }
 
-function Exp({btn}){
+function Exp({btn, preview}){
     const [jobtitle, setJobtitle] = useState('');
     const [company, setCompany] = useState('')
     const [city, setCity] = useState('')
@@ -178,8 +179,8 @@ return(
         <h4>Description</h4>
         <Description text = {textarea}/>
         <div className= 'btn'>
-            <Button color= 'darkgreen' background='lightblue' text= 'edit' btnClick={Edit}/>
-            <Button color = 'darkblue' background='lightyellow' text = 'delete' btnClick={btn}/>
+            <Button color= 'darkgreen' background='lightblue' text= 'edit' preview={preview} btnClick={Edit}/>
+            <Button color = 'darkblue' background='lightyellow' text = 'delete' preview={preview} btnClick={btn}/>
 
         </div>
     </div>
@@ -188,14 +189,10 @@ return(
 </>
     )
 }
-function Experience(){
+function Experience({view}){
     const [add, setAdd] = useState('b');
     const [cards, setCards] = useState([])
     const mapp = cards.map((card) => {return card})
-    console.log(add)
-    console.log(cards)
-    console.log(mapp)
-
     const delExp = (e) => {
         setAdd(add)
         let inx = cards.findIndex(card => card.key == add)
@@ -216,7 +213,7 @@ return (
         <>
             <div className={styles.experience}>
                     <h3>Experience</h3>
-                    <Button color = 'blue' background = 'lightgreen' text = 'add' btnClick={addExperience}/>
+                    <Button color = 'blue' background = 'lightgreen' text = 'add' preview={view} btnClick={addExperience}/>
             </div>
             <div className='eu'>
                     {mapp}
