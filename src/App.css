@@ -4,4 +4,10 @@
   padding: 2rem;
   text-align: start;
 }
+@media(max-width: 450px) {
+  #root{
+    max-width: 420px;
+  }
+  
+}
 
