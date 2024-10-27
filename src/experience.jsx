@@ -1,43 +1,7 @@
 import { useState} from 'react';
 import  styles from'./stylefiles/experience.module.css';
-function Info({index, inf}){
-    return (
-        <div className = {styles.in}>
-            <div className= 'index'> {index} </div>
-            <div className='inf'>{inf}</div> 
-        </div>
-    )
-}
-function FromTo({startmonth, startyear, endmonth, endyear}){
-    return(
-        <>
-            <div className= 'date'>
-                    <div>from: {startmonth + '  '}{startyear} </div>
-                    <div>  to: {endmonth + '  '}{endyear}</div>
-            </div>
-        </>
-    )
-}
-function Label({title, type, name, value, setValue}){
-    return(
-        <>
-        <label htmlFor = {name}>
-             <h4>{title}: {''}</h4>
-        </label>
-             <input type={type}
-                id = {name}
-                name = {name}
-                 value={value}
-                 onChange={(event) => {setValue(event.target.value)}}
-              /> 
-        </>            
-    )
-}
-function Description({text}){
-    return(
-        <div className={styles.desc} placeholder= 'describe job'>{text}</div>
-    )
-}
+import {Info, FromTo, Label} from './education.jsx'
+
 function Button({color, background, text, btnClick}){
     const btnStyle ={
         color: color,
@@ -49,8 +13,13 @@ function Button({color, background, text, btnClick}){
         </>
     )
 }
+function Description({text}){
+    return(
+        <div className={styles.desc} placeholder= 'describe job'>{text}</div>
+    )
+}
 
-function Exp(btn){
+function Exp({btn}){
     const [jobtitle, setJobtitle] = useState('');
     const [company, setCompany] = useState('')
     const [city, setCity] = useState('')
@@ -220,25 +189,25 @@ return(
     )
 }
 function Experience(){
-    const [add, setAdd] = useState('b');
+    const [addd, setAddd] = useState('b');
     const [cards, setCards] = useState([])
     const mapp = cards.map((card) => {return card})
-    console.log(add)
+    console.log(addd)
     console.log(cards)
     console.log(mapp)
 
     const delExp = (e) => {
-        setAdd(add)
-        let inx = cards.findIndex(card => card.key == add)
+        setAddd(addd)
+        let inx = cards.findIndex(card => card.key == addd)
         cards.splice(inx, 1);
         setCards(cards)
         console.log(inx)
     }
     const addExperience = (e) =>{
-        setAdd(add +1)
-        cards.push(<li key={add}><Exp key={add} btn = {delExp}/><button onClick={delExp} >del</button></li>)
+        setAddd(addd +1)
+        cards.push(<li key={addd}><Exp key={addd} btn = {delExp}/></li>)
         setCards(cards)
-        console.log(add) 
+        console.log(addd) 
     }
 return (
         <>

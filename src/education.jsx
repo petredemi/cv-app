@@ -3,7 +3,7 @@ import  styles from'./stylefiles/education.module.css';
 
 function Info({index, inf}){
     return (
-        <div className = {styles.in}>
+        <div>
             <div className= 'index'> {index} </div>
             <div className='inf'>{inf}</div> 
         </div>
@@ -30,7 +30,6 @@ function Label({title, type, name, value, setValue}){
                 name = {name}
                  value={value}
                  onChange={(event) => {setValue(event.target.value)}}
-                 className={styles.input}
               /> 
         </>            
     )
@@ -146,7 +145,7 @@ function Button({ color, background, text, handleClick}){
                     
                   <label className='month'>
                      <h4>end month</h4>
-                     <input list="endmonth" name="endmonth"
+                     <input list="endmonth" name="endmonth" className='name'
                         value = {endmonth}
                         onChange={(event) =>{
                             setEndmonth(event.target.value)
@@ -234,4 +233,4 @@ function Education(){
             </>
         ) 
 }
- export {Education};
+ export {Education, Info, FromTo, Label}
