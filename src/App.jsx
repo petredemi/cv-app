@@ -3,9 +3,6 @@ import {Personalinfo} from './personalinfo.jsx'
 import {Education} from './education.jsx'
 import {Experience} from './experience.jsx'
 import './App.css'
-
-
-
 function Button({ color, background, text, handleClick}){
   const btnStyle ={
       color: color,
@@ -15,7 +12,6 @@ function Button({ color, background, text, handleClick}){
       <button style = {btnStyle} onClick={handleClick}>{text}</button>
   )
 }
-
 
 function App() {
     const [view, setView] = useState('block')

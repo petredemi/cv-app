@@ -21,8 +21,8 @@ function Label({title, type, name, value, setValue}){
              <input type={type}
                 id = {name}
                 name = {name}
-                 value={value}
-                 onChange={(event) => {setValue(event.target.value)}}
+                value={value}
+                onChange={(event) => {setValue(event.target.value)}}
               /> 
         </>            
     )
@@ -201,7 +201,7 @@ function Education({view, col}){
     const [add, setAdd] = useState(0);
     const [cards, setCards] = useState([])
     const [cardslenght, setcardsL] = useState(0)
-    
+
     console.log(col)
     console.log(view)
     function findInd(){

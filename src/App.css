@@ -3,10 +3,11 @@
   margin: 0 auto;
   padding: 1rem;
   text-align: start;
+
 }
 @media(max-width: 450px) {
   #root{
-    max-width: 370px;
+    max-width: 380px;
   }
   
 }
