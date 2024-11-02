@@ -191,22 +191,24 @@ return(
     )
 }
 function Experience({view}){
-    const [add, setAdd] = useState('b');
+    const [add, setAdd] = useState(0);
     const [cards, setCards] = useState([])
-    const mapp = cards.map((card) => {return card})
+    const [cardslenght, setcardsL] = useState(0)
+    
     const delExp = (e) => {
-        setAdd(add)
         let inx = cards.findIndex(card => card.key == add)
         cards.splice(inx, 1);
-        setCards(cards)
+        setcardsL(cardslenght)
         console.log(inx)
+        console.log(cards)
     }
     const addExperience = (e) =>{
         setAdd(add +1)
         cards.push(<li key={add}><Exp key={add} btn = {delExp}/></li>)
         setCards(cards)
+        setcardsL(cards.length)
     }
-    if( add == 'b'){
+    if( add == 0){
         addExperience()
     }
 return (
@@ -216,7 +218,7 @@ return (
                     <Button color = 'blue' background = 'lightgreen' text = 'add' preview={view} btnClick={addExperience}/>
             </div>
             <div className='eu'>
-                    {mapp}
+                    {cards}
             </div>
         </>
     ) 

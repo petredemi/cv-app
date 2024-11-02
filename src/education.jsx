@@ -27,7 +27,7 @@ function Label({title, type, name, value, setValue}){
         </>            
     )
 }
-function Button({ color, background, preview, text, handleClick}){
+function Button({ color, background, preview, text, handleClick, handelMouse, mouseLeave}){
     const btnStyle ={
         color: color,
         backgroundColor: background,
@@ -35,11 +35,11 @@ function Button({ color, background, preview, text, handleClick}){
     }
     return(
         <>
-        <button className='btn' style = {btnStyle} onClick={handleClick}>{text}</button>
+        <button className='btn' style = {btnStyle} onClick={handleClick} onMouseOver={handelMouse} onMouseLeave={mouseLeave}>{text}</button>
         </>
     )
 }
-    function Edu({btn}){
+    function Edu({btn, mouseover, mouseleave, col}){
         const [grade, setGrade] = useState('')
         const [study, setStudy] = useState('')
         const [school, setSchool] = useState('')
@@ -189,7 +189,7 @@ function Button({ color, background, preview, text, handleClick}){
             <FromTo  startmonth={startmonth} endmonth={endmonth} startyear={startyear} endyear={endyear}/>
             <div className= 'btn'>
                 <Button color= 'darkgreen' background='lightblue' text= 'edit'  handleClick={Edit}/>
-                <Button color = 'darkblue' background='lightyellow' text = 'delete' handleClick={btn}/>
+                <Button color = {col} background='lightyellow' text = 'delete' handelMouse={mouseover} handleClick={btn} mouseLeave={mouseleave}/>
             </div>
 
         </div>  
@@ -197,29 +197,32 @@ function Button({ color, background, preview, text, handleClick}){
     
     )
 }
-function Education({view}){
-    const [add, setAdd] = useState('a');
+function Education({view, col}){
+    const [add, setAdd] = useState(0);
     const [cards, setCards] = useState([])
-    const mapp = cards.map((card) => {return card})
+    const [cardslenght, setcardsL] = useState(0)
     
-    const delEdu = () => {
-            setAdd(add )
-            const inx = cards.findIndex(card => card.key == add)
-            if(inx < 0){return}
-            cards.splice(inx, 1);
-            setCards(cards)
-            console.log(add)
-            console.log(inx)
-        }
-    const addEducation = () =>{
-        setAdd(add +1)
-        cards.push( <li key={add}><Edu btn = {delEdu}/></li>)
-        console.log(view)
-        setCards(cards)
-        console.log(add)
-        
+    console.log(col)
+    console.log(view)
+    function findInd(){
+            console.log('ddfd')
+            console.log(cards)
     }
-    if(add == 'a'){
+    function delEdu(){
+        let inx = cards.findIndex((card) => card.key == add)
+            console.log(inx)
+            cards.splice(inx, 1);
+            setcardsL(cardslenght)
+            console.log(cards)
+    }
+    function  addEducation(){
+       setAdd(add +1)
+       cards.push( <li key={add}><Edu col= {col} key={add} mouseover={findInd} btn={delEdu}/></li>)
+       setCards(cards)
+       setcardsL(cards.length)
+       console.log(cards)
+    }
+    if(add == 0){
         addEducation()
     }
     return (
@@ -229,7 +232,7 @@ function Education({view}){
                         <Button color = 'blue' background = 'lightgreen' text = 'add' preview={view} handleClick={addEducation}/>
                 </div>
                 <div className='eu'>
-                    {mapp}
+                    {cards}
                 </div>
             </>
         ) 
