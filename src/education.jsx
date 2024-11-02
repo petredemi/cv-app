@@ -27,7 +27,7 @@ function Label({title, type, name, value, setValue}){
         </>            
     )
 }
-function Button({ color, background, preview, text, handleClick, handelMouse, mouseLeave}){
+function Button({ color, background, preview, text, handleClick, handelMouse}){
     const btnStyle ={
         color: color,
         backgroundColor: background,
@@ -35,11 +35,11 @@ function Button({ color, background, preview, text, handleClick, handelMouse, mo
     }
     return(
         <>
-        <button className='btn' style = {btnStyle} onClick={handleClick} onMouseOver={handelMouse} onMouseLeave={mouseLeave}>{text}</button>
+        <button className='btn' style = {btnStyle} onClick={handleClick} onMouseOver={handelMouse}>{text}</button>
         </>
     )
 }
-    function Edu({btn, mouseover, mouseleave, col}){
+    function Edu({btn, mouseover, preview}){
         const [grade, setGrade] = useState('')
         const [study, setStudy] = useState('')
         const [school, setSchool] = useState('')
@@ -182,14 +182,14 @@ function Button({ color, background, preview, text, handleClick, handelMouse, mo
     <div className="addeducation">
         <div className="basic" style={{display:show}}>
             {Form()}
-            <Button color = 'darkblue' background='lightgreen' text= 'save' handleClick={Save}/>
+            <Button key= 'a' color = 'darkblue' background='lightgreen' text= 'save' handleClick={Save}/>
         </div>
         <div className="info" >
             {personal.map((persona) => <Info key = {persona.id} inf = {persona.inf} index = {field[persona.index]}/>)}
             <FromTo  startmonth={startmonth} endmonth={endmonth} startyear={startyear} endyear={endyear}/>
             <div className= 'btn'>
-                <Button color= 'darkgreen' background='lightblue' text= 'edit'  handleClick={Edit}/>
-                <Button color = {col} background='lightyellow' text = 'delete' handelMouse={mouseover} handleClick={btn} mouseLeave={mouseleave}/>
+                <Button key='b' color= 'darkgreen' preview={preview} background='lightblue' text= 'edit'  handleClick={Edit}/>
+                <Button key= 'c' color = 'blue' preview={preview} background='lightyellow' text = 'delete' handelMouse={mouseover} handleClick={btn} />
             </div>
 
         </div>  
@@ -197,12 +197,11 @@ function Button({ color, background, preview, text, handleClick, handelMouse, mo
     
     )
 }
-function Education({view, col}){
+function Education({view}){
     const [add, setAdd] = useState(0);
     const [cards, setCards] = useState([])
     const [cardslenght, setcardsL] = useState(0)
 
-    console.log(col)
     console.log(view)
     function findInd(){
             console.log('ddfd')
@@ -217,7 +216,7 @@ function Education({view, col}){
     }
     function  addEducation(){
        setAdd(add +1)
-       cards.push( <li key={add}><Edu col= {col} key={add} mouseover={findInd} btn={delEdu}/></li>)
+       cards.push( <li key={add}><Edu preview={view} key={add} mouseover={findInd} btn={delEdu}/></li>)
        setCards(cards)
        setcardsL(cards.length)
        console.log(cards)

@@ -9,8 +9,20 @@ function Info({index, inf}){
         </div>
     )
 }
+function Button({ color, background, preview, text, handleClick, handelMouse}){
+    const btnStyle ={
+        color: color,
+        backgroundColor: background,
+        display: preview
+    }
+    return(
+        <>
+        <button className='btn' style = {btnStyle} onClick={handleClick} onMouseOver={handelMouse}>{text}</button>
+        </>
+    )
+}
 const addcard = []
-function Personalinfo(){
+function Personalinfo({preview}){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('')
     const [mobile, setMobile] = useState('')
@@ -91,7 +103,8 @@ function Personalinfo(){
             </div>
             <div className="info">
                 {personal.map((persona) => <Info key = {persona.id} inf = {persona.inf} index = {field[persona.index]}/>)}
-                <button itemID='edit' onClick={Edit}>Edit</button>
+                <Button key='b' color= 'darkgreen' preview={preview} background='lightblue' text= 'edit'  handleClick={Edit}/>
+
             </div>
             </div>
             </>

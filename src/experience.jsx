@@ -21,7 +21,7 @@ function Description({text}){
     )
 }
 
-function Exp({btn, view}){
+function Exp({btn, preview}){
     const [jobtitle, setJobtitle] = useState('');
     const [company, setCompany] = useState('')
     const [city, setCity] = useState('')
@@ -180,8 +180,8 @@ return(
         <h4>Description</h4>
         <Description text = {textarea}/>
         <div className= 'btn'>
-            <Button color= 'darkgreen' background='lightblue' text= 'edit' preview={view} btnClick={Edit}/>
-            <Button color = 'darkblue' background='lightyellow' text = 'delete' preview={view} btnClick={btn}/>
+            <Button color= 'darkgreen' background='lightblue' text= 'edit' preview={preview} btnClick={Edit}/>
+            <Button color = 'blue' background='lightyellow' text = 'delete' preview={preview} btnClick={btn}/>
 
         </div>
     </div>
@@ -204,7 +204,7 @@ function Experience({view}){
     }
     const addExperience = (e) =>{
         setAdd(add +1)
-        cards.push(<li key={add}><Exp key={add} btn = {delExp}/></li>)
+        cards.push(<li key={add}><Exp key={add}  preview={view} btn = {delExp}/></li>)
         setCards(cards)
         setcardsL(cards.length)
     }
