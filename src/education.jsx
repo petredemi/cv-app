@@ -39,7 +39,7 @@ function Button({ color, background, preview, text, handleClick, handelMouse}){
         </>
     )
 }
-    function Edu({btn, mouseover, preview}){
+    function Edu({btn, mouseover, preview, col}){
         const [grade, setGrade] = useState('')
         const [study, setStudy] = useState('')
         const [school, setSchool] = useState('')
@@ -189,7 +189,7 @@ function Button({ color, background, preview, text, handleClick, handelMouse}){
             <FromTo  startmonth={startmonth} endmonth={endmonth} startyear={startyear} endyear={endyear}/>
             <div className= 'btn'>
                 <Button key='b' color= 'darkgreen' preview={preview} background='lightblue' text= 'edit'  handleClick={Edit}/>
-                <Button key= 'c' color = 'blue' preview={preview} background='lightyellow' text = 'delete' handelMouse={mouseover} handleClick={btn} />
+                <Button key= 'c' color = {col} preview={preview} background='lightyellow' text = 'delete' handelMouse={mouseover} handleClick={btn} />
             </div>
 
         </div>  
@@ -197,15 +197,18 @@ function Button({ color, background, preview, text, handleClick, handelMouse}){
     
     )
 }
-function Education({view}){
+function Education({view, col, b}){
     const [add, setAdd] = useState(0);
     const [cards, setCards] = useState([])
     const [cardslenght, setcardsL] = useState(0)
-
     console.log(view)
+    console.log(col)
+    console.log(b)
+ //   console.log(c)
     function findInd(){
             console.log('ddfd')
             console.log(cards)
+            setCards(cards)
     }
     function delEdu(){
         let inx = cards.findIndex((card) => card.key == add)
@@ -214,9 +217,9 @@ function Education({view}){
             setcardsL(cardslenght)
             console.log(cards)
     }
-    function  addEducation(){
+    const addEducation = () =>{
        setAdd(add +1)
-       cards.push( <li key={add}><Edu preview={view} key={add} mouseover={findInd} btn={delEdu}/></li>)
+       cards.push( <li key={add}><Edu col={col} preview={view} key={add} mouseover={findInd} btn={delEdu}/></li>)
        setCards(cards)
        setcardsL(cards.length)
        console.log(cards)
@@ -234,6 +237,22 @@ function Education({view}){
                     {cards}
                 </div>
             </>
-        ) 
+        )
 }
+function Educationxx({view, col}){
+    const [c, setC] = useState()
+    console.log(col)
+    if(col == 'blue'){  
+    return(
+        <>
+            <Educ view={view}  co={col} />
+        </>
+    )}else if(col == 'red'){
+        return(
+            <>
+                <Educ view={view}  co={col} />
+            </>
+        )}
+}
+
  export {Education, FromTo, Label}
