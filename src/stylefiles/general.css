@@ -7,7 +7,7 @@
 }
 .basic{
     box-sizing: content-box;
-    background-color:whitesmoke;
+    background-color: whitesmoke;
     width: fit-content;
     text-align: left;
     display: flex;

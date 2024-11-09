@@ -179,7 +179,7 @@ return(
         <FromTo  startmonth={startmonth} endmonth={endmonth} startyear={startyear} endyear={endyear}/>
         <h4>Description</h4>
         <Description text = {textarea}/>
-        <div className= 'btn'>
+        <div className= 'btns'>
             <Button color= 'darkgreen' background='lightblue' text= 'edit' preview={preview} btnClick={Edit}/>
             <Button color = 'blue' background='lightyellow' text = 'delete' preview={preview} btnClick={btn}/>
 
@@ -199,8 +199,6 @@ function Experience({view}){
         let inx = cards.findIndex(card => card.key == add)
         cards.splice(inx, 1);
         setcardsL(cardslenght)
-        console.log(inx)
-        console.log(cards)
     }
     const addExperience = (e) =>{
         setAdd(add +1)

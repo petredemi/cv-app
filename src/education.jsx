@@ -1,4 +1,4 @@
-import { useState} from 'react';
+import {useEffect, useState} from 'react';
 import  styles from'./stylefiles/education.module.css';
 import { Info } from './personalinfo.jsx';
 
@@ -27,7 +27,7 @@ function Label({title, type, name, value, setValue}){
         </>            
     )
 }
-function Button({ color, background, preview, text, handleClick, handelMouse}){
+function Button({ color, background, preview, text, handleClick}){
     const btnStyle ={
         color: color,
         backgroundColor: background,
@@ -35,15 +35,15 @@ function Button({ color, background, preview, text, handleClick, handelMouse}){
     }
     return(
         <>
-        <button className='btn' style = {btnStyle} onClick={handleClick} onMouseOver={handelMouse}>{text}</button>
+        <button className='btn' style = {btnStyle} onClick={handleClick}>{text}</button>
         </>
     )
 }
-    function Edu({btn, mouseover, preview, col}){
-        const [grade, setGrade] = useState('')
-        const [study, setStudy] = useState('')
-        const [school, setSchool] = useState('')
-        const [startmonth, setStartmonth] = useState('')
+    function Edu({btn, preview}){
+        const [grade, setGrade] = useState('');
+        const [study, setStudy] = useState('');
+        const [school, setSchool] = useState('');
+        const [startmonth, setStartmonth] = useState('');
         const [startyear, setStartyear] = useState('');
         const [endmonth, setEndmonth] = useState('');
         const [endyear, setEndyear] = useState('');
@@ -59,9 +59,9 @@ function Button({ color, background, preview, text, handleClick, handelMouse}){
         ]
         function CreateYears(){
                 const yeardata = new Date()
-                const y = yeardata.getFullYear()
+                const y = yeardata.getFullYear();
                 for (let i = y; i > 2010; i-- )
-                 years.push(i)
+                 years.push(i);
             }
         CreateYears()
         const personal = [ 
@@ -187,9 +187,9 @@ function Button({ color, background, preview, text, handleClick, handelMouse}){
         <div className="info" >
             {personal.map((persona) => <Info key = {persona.id} inf = {persona.inf} index = {field[persona.index]}/>)}
             <FromTo  startmonth={startmonth} endmonth={endmonth} startyear={startyear} endyear={endyear}/>
-            <div className= 'btn'>
+            <div className= 'btns'>
                 <Button key='b' color= 'darkgreen' preview={preview} background='lightblue' text= 'edit'  handleClick={Edit}/>
-                <Button key= 'c' color = {col} preview={preview} background='lightyellow' text = 'delete' handelMouse={mouseover} handleClick={btn} />
+                <Button key= 'c' color = 'blue' preview= {preview} background='lightyellow' text = 'delete' handleClick={btn} />
             </div>
 
         </div>  
@@ -197,32 +197,21 @@ function Button({ color, background, preview, text, handleClick, handelMouse}){
     
     )
 }
-function Education({view, col, b}){
+
+function Education({view, col}){
     const [add, setAdd] = useState(0);
     const [cards, setCards] = useState([])
     const [cardslenght, setcardsL] = useState(0)
-    console.log(view)
-    console.log(col)
-    console.log(b)
- //   console.log(c)
-    function findInd(){
-            console.log('ddfd')
-            console.log(cards)
-            setCards(cards)
-    }
+    
     function delEdu(){
         let inx = cards.findIndex((card) => card.key == add)
-            console.log(inx)
             cards.splice(inx, 1);
             setcardsL(cardslenght)
-            console.log(cards)
     }
     const addEducation = () =>{
        setAdd(add +1)
-       cards.push( <li key={add}><Edu col={col} preview={view} key={add} mouseover={findInd} btn={delEdu}/></li>)
-       setCards(cards)
+       cards.push( <li key={add} ><Edu preview={view} key={add} btn={delEdu}/></li>)
        setcardsL(cards.length)
-       console.log(cards)
     }
     if(add == 0){
         addEducation()
@@ -231,28 +220,12 @@ function Education({view, col, b}){
             <>
                 <div className={styles.education}>
                         <h3>Education</h3>
-                        <Button color = 'blue' background = 'lightgreen' text = 'add' preview={view} handleClick={addEducation}/>
+                        <Button color= 'blue' background = 'lightgreen' text = 'add' handleClick={addEducation}/>
                 </div>
                 <div className='eu'>
-                    {cards}
+                        {cards}
                 </div>
             </>
         )
 }
-function Educationxx({view, col}){
-    const [c, setC] = useState()
-    console.log(col)
-    if(col == 'blue'){  
-    return(
-        <>
-            <Educ view={view}  co={col} />
-        </>
-    )}else if(col == 'red'){
-        return(
-            <>
-                <Educ view={view}  co={col} />
-            </>
-        )}
-}
-
  export {Education, FromTo, Label}
