@@ -59,8 +59,8 @@ function Button({ color, background, preview, text, handleClick}){
         ]
         function CreateYears(){
                 const yeardata = new Date()
-                const y = yeardata.getFullYear();
-                for (let i = y; i > 2010; i-- )
+                const y = yeardata.getFullYear() - 15;
+                for (let i = y; i > 2000; i-- )
                  years.push(i);
             }
         CreateYears()
@@ -198,7 +198,7 @@ function Button({ color, background, preview, text, handleClick}){
     )
 }
 
-function Education({view, col}){
+function Education({view}){
     const [add, setAdd] = useState(0);
     const [cards, setCards] = useState([])
     const [cardslenght, setcardsL] = useState(0)

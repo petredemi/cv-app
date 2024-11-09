@@ -14,6 +14,8 @@
     flex-direction: column;
     position: absolute;
     z-index: 1;
+    border-radius: 20px;
+    border: 1px solid green;
 }
 .in{
     font-size: 1.1rem;
@@ -22,11 +24,14 @@
 }
 .inf{
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 500;
     margin-left: 20px;
 }
+.info > .in > .inf{
+    font-size: 1.1rem;
+} 
 .index{
-    width: 110px;
+    width: 130px;
 }
 form{
     display: flex;

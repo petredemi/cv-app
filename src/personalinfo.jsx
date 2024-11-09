@@ -21,7 +21,6 @@ function Button({ color, background, preview, text, handleClick, handelMouse}){
         </>
     )
 }
-const addcard = []
 function Personalinfo({preview}){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('')
@@ -40,7 +39,7 @@ function Personalinfo({preview}){
         event.preventDefault();
             if(!edit){
                 console.log(edit)
-                setCol('grey')
+                setCol('lightgrey')
                 setShow('flex')
                 setEdit(true);
             }else{
@@ -66,7 +65,7 @@ function Personalinfo({preview}){
             <form className='form'>
               <label>
                  <h4>Nume: {''} </h4>
-                 <input type='text'
+                 <input type='text' style={{width: '240px'}}
                      name = 'name'
                      value={name}
                      onChange={(e) => {setName(e.target.value)}}
@@ -74,7 +73,7 @@ function Personalinfo({preview}){
               </label>
               <label>
                  <h4>Email: {''} </h4>
-                 <input type='mail'
+                 <input type='mail' style={{width: '240px'}}
                      name = 'email'
                      value={email}
                      onChange={(e) => {setEmail(e.target.value)}}
@@ -82,7 +81,7 @@ function Personalinfo({preview}){
               </label>
               <label>
                  <h4>Mobile: {''}</h4>
-                 <input type='number'
+                 <input type='number' style={{width: '240px'}}
                      name = 'email'
                      value={mobile}
                      onChange={(e) => {setMobile(e.target.value)}}

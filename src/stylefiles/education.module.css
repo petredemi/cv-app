@@ -5,8 +5,9 @@
     color: rgb(33, 69, 160);
 }
 input{
-    max-width: 320px;
+    max-width: 295px;
     margin-left: 40px;
+    border-radius: 5px;
 }
 .education{
     display: flex;
