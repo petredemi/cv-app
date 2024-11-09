@@ -51,7 +51,7 @@ function App(){
         setCancel()
         setTimeout(() => {
           window.print(), setView('block'), setText('preview'), setV('block'), setCancel(), 
-            setBtnview(false)}, 100)
+            setBtnview(false)}, 500)
       }
     
         //setV('none')
