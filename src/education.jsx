@@ -15,10 +15,11 @@ function FromTo({startmonth, startyear, endmonth, endyear}){
 function Label({title, type, name, value, setValue}){
     return(
         <>
-        <label htmlFor = {name}>
+        <label className='label1' htmlFor = {name}>
              <h4>{title}: {''}</h4>
         </label>
-             <input type={type}
+             <input className='input1' 
+                type={type}
                 id = {name}
                 name = {name}
                 value={value}
@@ -60,7 +61,7 @@ function Button({ color, background, preview, text, handleClick}){
         function CreateYears(){
                 const yeardata = new Date()
                 const y = yeardata.getFullYear();
-                for (let i = y; i > 1990; i-- )
+                for (let i = y; i > 1980; i-- )
                  years.push(i);
             }
         CreateYears()
@@ -106,7 +107,7 @@ function Button({ color, background, preview, text, handleClick}){
                         value = {label.value} setValue={label.setValue}/>)}
                   <label className = 'month' style={{marginTop: '10px'}}>
                      <h4>start month</h4>
-                     <input list="studydates" name="studydates"
+                     <input list="studydates" name="studydates" className='name'
                         value = {startmonth}
                         onChange= {(event) => {
                             return setStartmonth(event.target.value)
@@ -137,8 +138,7 @@ function Button({ color, background, preview, text, handleClick}){
                             return <option key = {year} value = {year}/>
                         })}
                       </datalist>
-                    </label>
-                    
+                    </label>              
                   <label className='month'>
                      <h4>end month</h4>
                      <input list="endmonth" name="endmonth" className='name'
@@ -158,7 +158,7 @@ function Button({ color, background, preview, text, handleClick}){
                   </label>
                   <label className='month'>
                      <h4>End year</h4>
-                     <input list="endyear" name="endyear"
+                     <input list="endyear" name="endyear" className='name'
                         value = {endyear}
                         onChange={(event) =>{
                             setEndyear(event.target.value)
@@ -201,8 +201,7 @@ function Button({ color, background, preview, text, handleClick}){
 function Education({view}){
     const [add, setAdd] = useState(0);
     const [cards, setCards] = useState([])
-    const [cardslenght, setcardsL] = useState(0)
-    
+    const [cardslenght, setcardsL] = useState(0)   
     function delEdu(){
         let inx = cards.findIndex((card) => card.key == add)
             cards.splice(inx, 1);

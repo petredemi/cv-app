@@ -1,13 +1,12 @@
 #root {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1rem;
+  max-width: 600px;
+  margin: auto;
   text-align: start;
 
 }
 @media(max-width: 450px) {
   #root{
-    max-width: 380px;
+    max-width: 550px;
   }
   
 }

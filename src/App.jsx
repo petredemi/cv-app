@@ -4,6 +4,7 @@ import {useState} from 'react'
 import {Personalinfo} from './personalinfo.jsx'
 import {Education} from './education.jsx'
 import {Experience} from './experience.jsx'
+import AboutMe from './aboutme.jsx'
 import './App.css'
 function Button({ color, background, preview, text, handleClick}){
   const btnStyle ={
@@ -54,18 +55,6 @@ function App(){
             setBtnview(false)}, 500)
       }
     
-        //setV('none')
-     //   setTimeout(() => {
-        //  window.print(), setV('block'), setView('block'), 
-       //   setBtnview(false)}, 100)
-  //    }else{
-  //      setView('block')
-  //      setBtnview(false)
-  //      setV('block')
-  //      setText('preview')
-  //      setCancel()
-  //      console.log(btns)
-  //    }
   }
 
   console.log(view)
@@ -78,8 +67,10 @@ return (
             {cancel}
             <Button color = 'darkblue' background= 'lightgreen' preview={v} text= {text} handleClick={viewMode}/>
           </div>
+
         </div>
         <Personalinfo/>
+        <AboutMe preview={view}/>
         <Education view={view}/>
         <Experience  view={view}/>
     </>

@@ -15,9 +15,10 @@ function Button({color, background, preview, text, btnClick}){
         </>
     )
 }
-function Description({text}){
+
+function Description({text, placeholder}){
     return(
-        <div className={styles.desc} placeholder= 'describe job'>{text}</div>
+        <div className={styles.desc} placeholder={placeholder}>{text}</div>
     )
 }
 
@@ -31,7 +32,7 @@ function Exp({btn, preview}){
     const [endyear, setEndyear] = useState('');
     const [edit, setEdit] = useState(false);
     const [show, setShow] = useState('none');
-    const [textarea, setTextarea] = useState( " tell about your experience")
+    const [textarea, setTextarea] = useState( "describe your job here")
 
     const field = ['Job title:',  'Company:', 'City, Country:']
     const months = ['Ianuary', 'February', 'March', 'April', 'May', 'Jun', 'July', 'August', 'September', 'October','November', 'December']
@@ -161,7 +162,7 @@ function Exp({btn, preview}){
                   </datalist>
               </label>
               <h4>Description:</h4>
-              <textarea value={textarea} placeholder='describe your job here' onChange={handleChange}/>
+              <textarea placeholder='describe your job here' onChange={handleChange} id='txt1'/>
             </form>
         </>
         )
@@ -194,7 +195,6 @@ function Experience({view}){
     const [add, setAdd] = useState(0);
     const [cards, setCards] = useState([])
     const [cardslenght, setcardsL] = useState(0)
-    
     const delExp = (e) => {
         let inx = cards.findIndex(card => card.key == add)
         cards.splice(inx, 1);

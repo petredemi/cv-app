@@ -25,15 +25,19 @@ function Personalinfo({preview}){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('')
     const [mobile, setMobile] = useState('')
+    const [web, setWeb] = useState('')
+    const [media, setMedia] = useState('')
     const [edit, setEdit] = useState(false);
     const [col, setCol] = useState('');
     const [show, setShow] = useState('none');
-    const field = ['Nume:  ', 'Email:  ', 'Mobile:']
+    const field = ['Nume:  ', 'Email:  ', 'Mobile:', 'Social media:', 'Webpage:']
 
     const personal = [ 
         {id: 1, inf: name, index: 0},
         {id: 2, inf: email, index: 1},
-        {id: 3, inf: mobile, index: 2}
+        {id: 3, inf: mobile, index: 2},
+        {id: 4, inf: media, index: 3},
+        {id: 5, inf: web, index: 4}
     ];
     function Edit(event){
         event.preventDefault();
@@ -59,52 +63,73 @@ function Personalinfo({preview}){
             setEdit(true)
         }
     }
+
     function Form(){
         return(
         <>
             <form className='form'>
-              <label>
+              <label className='label1'>
                  <h4>Nume: {''} </h4>
-                 <input type='text' style={{width: '240px'}}
-                     name = 'name'
-                     value={name}
-                     onChange={(e) => {setName(e.target.value)}}
+                 <input className='input1'
+                    type='text' style={{width: '240px'}}
+                    name = 'name'
+                    value={name}
+                    onChange={(e) => {setName(e.target.value)}}
                   />                        
               </label>
-              <label>
+              <label className='label1'>
                  <h4>Email: {''} </h4>
-                 <input type='mail' style={{width: '240px'}}
+                 <input className='input1' 
+                    type='mail'
                      name = 'email'
                      value={email}
                      onChange={(e) => {setEmail(e.target.value)}}
                   />                        
               </label>
-              <label>
+              <label className='label1'>
                  <h4>Mobile: {''}</h4>
-                 <input type='number' style={{width: '240px'}}
+                 <input className='input1' 
+                     type='number'
                      name = 'email'
                      value={mobile}
                      onChange={(e) => {setMobile(e.target.value)}}
                   />                        
               </label>
+              <label className='label1'>
+                 <h4>Social media {''} </h4>
+                 <input className='input1' 
+                     type='text'
+                     name = 'media'
+                     value={media}
+                     onChange={(e) => {setMedia(e.target.value)}}
+                  />                        
+              </label>
+              <label className='label1'>
+                 <h4>Webpage {''} </h4>
+                 <input className='input1' 
+                     type='text'
+                     name = 'web'
+                     value={web}
+                     onChange={(e) => {setWeb(e.target.value)}}
+                  />                        
+              </label>
               <button itemID='save' type='submit' onClick={Save}>Save</button>
             </form>
         </>
-    
             )
         }
     return (
             <>
             <div className="app">
-            <h3>Personal Information</h3>
-            <div className="basic" style={{display:show, backgroundColor: col}}>
+                <h3>Personal Information</h3>
+                <div className="basic" style={{display:show, backgroundColor: col}}>
                     {Form()}
-            </div>
-            <div className="info">
-                {personal.map((persona) => <Info key = {persona.id} inf = {persona.inf} index = {field[persona.index]}/>)}
-                <Button key='b' color= 'darkgreen' preview={preview} background='lightblue' text= 'edit'  handleClick={Edit}/>
+                </div>
+                <div className="info">
+                    {personal.map((persona) => <Info key = {persona.id} inf = {persona.inf} index = {field[persona.index]}/>)}
+                    <Button key='b' color= 'darkgreen' preview={preview} background='lightblue' text= 'edit'  handleClick={Edit}/>
 
-            </div>
+                </div>
             </div>
             </>
     ) 

@@ -7,8 +7,8 @@
 }
 .basic{
     box-sizing: content-box;
-    background-color: whitesmoke;
-    width: fit-content;
+    background-color: aliceblue;
+    width: auto;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -18,25 +18,23 @@
     border: 1px solid green;
 }
 .in{
-    font-size: 1.1rem;
     display: flex;
     width: fit-content;
+    margin-left: 5px;
 }
 .inf{
     font-size: 1rem;
-    font-weight: 500;
-    margin-left: 20px;
+    margin-left: 0px;
 }
-.info > .in > .inf{
-    font-size: 1.1rem;
-} 
 .index{
-    width: 130px;
+    width: 110px;
+    font-size: 1rem;
+    margin-right: 1px;
 }
 form{
     display: flex;
     flex-direction: column;
-    max-width: 420px;
+    max-width: 490px;
     padding: 10px;
     padding-left: 20px;
     padding-right: 20px;
@@ -44,6 +42,10 @@ form{
 h4{
     margin-top: 4px;
     margin-bottom: 0px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: darkblue;
+    margin-left: 5px;
 }
 label{
     max-width: 400px;
@@ -52,10 +54,10 @@ label{
 
 }
 input{
-    margin-left: 40px;
+    margin-left: 10px;
     width: 350px;
-    height: 22px;
-    font-size: 1.1rem;
+    height: 20px;
+    font-size: 1rem;
     margin: 2px;
 }
 .month, .year{
@@ -72,6 +74,9 @@ input{
     width: 150px;
     font-size: 1.1rem;
 }
+textarea{
+    min-width: 340px;
+}
 button{
     margin: 10px;
     border: 2px solid black;
@@ -79,30 +84,36 @@ button{
     height: fit-content;
 }
 .info{
-    border: 1px solid grey;
-    box-shadow: 2px 2px 20px grey;
+    border: 1px solid rgb(0, 0, 0);
     min-width: 370px;
-    border-radius: 15px;
+    border-radius: 10px;
     padding: 8px;
     margin-bottom: 10px;
 
 }
 .info > div{
-    font-size: 1rem;
-    width: 350px;
+    width: auto;
     display: flex;
     justify-content: start;
+    max-width: 520px;
 
 }
 .date{
-    font-size: 1.1rem;
-    font-weight: 600;
+    font-size: 0.9rem;
+    font-weight: 400;
     width: 350px;
-    margin-top: 10px;
+    margin-top: 1px;
+    margin-left: 5px;
 }
 .date > div{
     margin-right: 10px ;
 }
 li{
     list-style: none;
+}
+.label1{
+    min-width: 340px;
+}
+.input1{
+    min-width: 250px;
 }
