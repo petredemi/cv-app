@@ -1,5 +1,5 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState, FormEvent, ChangeEventHandler} from 'react'
 
 import {Personalinfo} from './personalinfo.jsx'
 import {Education} from './education.jsx'
@@ -23,8 +23,7 @@ function App(){
   const [ v, setV] = useState('block')
   const [text, setText] = useState('preview')
   const btns = document.querySelectorAll(`.btn`)
-  const [cancel, setCancel] = useState()
-  
+  const [cancel, setCancel] = useState();  
   btns.forEach((btn) => {
     return btn.style.display = view;
   })

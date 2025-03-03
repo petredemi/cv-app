@@ -82,7 +82,6 @@ function Button({ color, background, preview, text, handleClick}){
                     console.log(edit)
                     setShow('flex')
                     setEdit(true);
-                    console.log(years)
                 }else{
                     console.log(edit)
                     setShow('none')

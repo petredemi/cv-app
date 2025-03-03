@@ -66,7 +66,6 @@ function Exp({btn, preview}){
                 console.log(edit)
                 setShow('flex')
                 setEdit(true);
-                console.log(years)
             }else{
                 console.log(edit)
                 setShow('none')

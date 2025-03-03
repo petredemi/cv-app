@@ -1,16 +1,16 @@
 import { useState} from 'react';
 import './stylefiles/general.css';
 
-function Info({index, inf}){
+function Info({index, inf, img1}){
     return (
         <div className="in">
             <div className='index'> {index} </div>
-            <div className='inf'>{inf}</div> 
+            <div className='inf'>{inf}</div>
         </div>
     )
 }
 function Button({ color, background, preview, text, handleClick, handelMouse}){
-    const btnStyle ={
+    const btnStyle = {
         color: color,
         backgroundColor: background,
         display: preview
@@ -31,13 +31,14 @@ function Personalinfo({preview}){
     const [col, setCol] = useState('');
     const [show, setShow] = useState('none');
     const field = ['Nume:  ', 'Email:  ', 'Mobile:', 'Social media:', 'Webpage:']
-
+    const [portret, setPortret] = useState()
     const personal = [ 
         {id: 1, inf: name, index: 0},
         {id: 2, inf: email, index: 1},
         {id: 3, inf: mobile, index: 2},
         {id: 4, inf: media, index: 3},
-        {id: 5, inf: web, index: 4}
+        {id: 5, inf: web, index: 4},
+        {id: 6, inf: portret, index: 5}
     ];
     function Edit(event){
         event.preventDefault();
